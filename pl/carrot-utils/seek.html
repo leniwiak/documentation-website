@@ -46,42 +46,52 @@ s, sleep:
 </pre>
 
 <h3>Przykłady działania:</h3>
-<p>Użycie tego programu przydaje się, jeśli chcesz udokumentować wyjście pewnego programu przy
-jednoczesnym zbadaniu jego wyjścia na bieżąco:</p>
+<p>Wyświetla dodatkowe linie w pliku:</p>
 <pre>
-&gt; ./fox.sh | split output.txt
-meow!
-meow!
-2+2=5?
-&gt; p output.txt
-meow!
-meow!
-2+2=5?
-&gt;
+Console 1.
+&gt; seek fun_facts.txt
+These are some interesting facts about dogs:
+
+Console 2.
+&gt; say "Snoopy, from Charles M. Schultz’s 'Peanuts' comic strip, is a beagle." &gt;&gt; fun_facts.txt
+
+Console 1.
+&gt; seek fun_facts.txt
+These are some interesting facts about dogs:
+Snoopy, from Charles M. Schultz’s 'Peanuts' comic strip, is a beagle.
 </pre>
-<p>Program może zostać użyty do dopisania lub nadpisania treści w plikach:</p>
+
+<p>Ten program nie informuje użytkownika o usunięciu lub zmodyfikowaniu istniejących linii.
+Przydaje się tylko w chwilach, gdy jakaś linia zostanie dodana do pliku:</p>
 <pre>
-&gt; p destroyme.txt
-Some data here, that should be overwritten
-&gt; ./fox.sh | split destroyme.txt -o
-meow!
-meow!
-2+2=5?
-&gt; p destroyme.txt
-meow!
-meow!
-2+2=5?
-&gt; p leaveme.txt
-Some very improrant data here, that should be left without any changes!
-&gt; ./fox.sh | split leaveme.txt -u
-meow!
-meow!
-2+2=5?
-&gt; p leaveme.txt
-Some very improrant data here, that should be left without any changes!
-meow!
-meow!
-2+2=5?
+Console 1.
+&gt; seek fun_facts.txt
+These are some interesting facts about dogs:
+Snoopy, from Charles M. Schultz’s 'Peanuts' comic strip, is a beagle.
+
+Console 2.
+&gt; loathe -z -l=1
+
+Console 1.
+&gt; seek fun_facts.txt
+These are some interesting facts about dogs:
+Snoopy, from Charles M. Schultz’s 'Peanuts' comic strip, is a beagle.
+</pre>
+
+<p>Nie trzeba wyświetlać początkowej zawartości pliku:</p>
+<pre>
+Console 1.
+&gt; p text.txt
+Lorem ipsum
+Dolor sit amet
+Blah blah blah
+&gt; seek text.txt
+Lorem ipsum
+Dolor sit amet
+Blah blah blah
+^CSIGINT
+&gt; seek text.txt -l
+^CSIGINT
 &gt;
 </pre>
 
