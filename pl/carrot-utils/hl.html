@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - hl</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>hl</h1>
+<h3>Krótki opis</h3>
+<p>Tworzy twarde dowiązania do zasobów</p>
+<h3>Pełny opis</h3>
+<p>Narzędzie pozwalające na stworzenie twardego dowiązania do danych na dysku.</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+NAME    -   Nazwa dowolnego elementu do przetworzenia.
+            Do poprawnego działania programu, wymagane są przynajmniej dwie nazwy elementów.
+            Program musi wiedzieć skąd i dokąd utworzyć link.
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+v, verbose:
+    Dokładnie informuje o poczynaniach programu.
+</pre>
+
+<h3>O dowiązaniach do plików na Linuxie:</h3>
+<p>
+Pliki, z którymi spotykasz się na co dzień są jedynie wyobrażeniem twojego systemu operacyjnego. Tak naprawdę,
+gdy dodajesz jakieś nowe elementy na swój dysk, zapisywane są one bit po bicie, w sposób liniowy i często
+nieuporządkowany bez żadnego rozdzielania i organizowania informacji. Z pomocą przychodzi nam kernel Linux,
+który próbuje zapanować nad tym chaosem w fajny sposób - otóż przydziela on każdemu, utworzonemu przez ciebie
+elementowi identyfikator inode i zapisuje sobie go gdzieś w pamięci. Następnie, łączy go w parę z informacją o
+tym gdzie dokładnie plik znajduje się w pamięci oraz jaka prowadzi do niego ścieżka na twoim systemie plików.
+<br>
+Stąd bierze nam się podział na linki miękkie i symboliczne. Jedne służą do linkowania do ścieżki pliku, a inne,
+wiążą się z identyfikatorem zasobu. Jakie to jednak ma korzyści? Porównajmy sobie je w tabelce poniżej:
+</p>
+
+<table border="1px">
+    <tbody>
+        <tr>
+            <th>Link miękki</th>
+            <th>Link twardy</th>
+        </tr>
+        <tr>
+            <td>Zawiera dowiązanie do ścieżki elementu w systemie plików.</td>
+            <td>Zawiera dowiązanie do inode danego zasobu.</td>
+        </tr>
+        <tr>
+            <td>Pozwala na utworzenie dowiązań do folderów.</td>
+            <td>Dowiązania do folderów są niemożliwe, bo nigdy nie otrzymują swojego inode.</td>
+        </tr>
+        <tr>
+            <td>Link przestanie działać, gdy ścieżka elementu, do której prowadzi link zmieni się.
+                Może się to stać na przykład kiedy zmieni się nazwa elementu, albo zostanie on przeniesiony do innego katalogu
+            </td>
+            <td>
+                Link nie przestanie działać, nawet gdy zasób zmieni swoją nazwę lub zostanie przeniesiony.
+                Linkujemy do jego identyfikatora inode, więc ścieżka jest nam zbędna.
+            </td>
+        </tr>
+        <tr>
+            <td>Wolniejsze rozwiązywanie linku</td>
+            <td>Szybsze rozwiązywanie linku</td>
+        </tr>
+        <tr>
+            <td>Usunięcie linku symbolicznego nie naruszy oryginalnego elementu.</td>
+            <td>
+                Usunięcie twardego linku, nie spowoduje wykasowania z pamięci zasobu, do którego prowadzi, dopóki w pamięci pozostaną
+                inne twarde linki, w tym - oryginalna ścieżka do zasobu.
+            </td>
+        </tr>
+        <tr>
+            <td>Usunięcie oryginalnego elementu, do którego prowadzi link symboliczny, zaskutkuje pozostawieniem martwego linka.</td>
+            <td>
+                Oryginalna ścieżka do zasobu jest twardym linkiem sama w sobie! Usunięcie jej nie usunie oryginalnego pliku, dopóki
+                w pamięci istnieją jeszcze jakieś twarde dowiązania.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Przykłady działania:</h3>
+<p>Możesz utworzyć twarde dowiązanie do dowolnego zasobu tak, aby był dostępny z dwóch różnych ścieżek:</p>
+<pre>
+&gt; l
+./:
+Link me!
+&gt; md -f=hlinks,inode "Link me"
+hlinks: 1
+inode: 2137
+&gt; hl "Link me!" "Blah Blah Blah"
+&gt; md -f=hlinks,inode "Link me"
+hlinks: 2
+inode: 2137
+&gt; md -f=hlinks,inode "Blah Blah Blah"
+hlinks: 2
+inode: 2137
+</pre>
+
+<p>Twarde linki są obojętne na zmianę ścieżki jakiegokolwiek innego zasobu:</p>
+<pre>
+&gt; p "Link me!" "Blah Blah Blah"
+If you see it, the link still works!
+If you see it, the link still works!
+&gt; m "Blah Blah Blah" Test
+&gt; p "Link me!" Test
+If you see it, the link still works!
+If you see it, the link still works!
+</pre>
+
+<p>Usunięcie JEDNEGO Z WIELU dostępnych twardych linków nigdy nie usunie zasobu</p>
+<pre>
+&gt; p "Link me!" Test
+If you see it, the link still works!
+If you see it, the link still works!
+&gt; rf "Link me!"
+&gt; p Test
+If you see it, the link still works!
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 1 czerwca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

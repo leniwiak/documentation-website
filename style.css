@@ -1,0 +1,21 @@
+body {
+    font-family: system-ui;
+    margin: 0% 15% 0% 15%;
+}
+
+code, pre {
+    font-family: monospace;
+    background-color: #eee;
+    padding: 0.5%;
+    display: block;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+@media only screen and (max-width: 768px){
+	body {
+		margin: 0% 5% 0% 5%;
+	}
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - md</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>md</h1>
+<h3>Krótki opis</h3>
+<p>Wyświetla informacje o zasobach</p>
+<h3>Pełny opis</h3>
+<p>Narzędzie pozwalające na wyświetlenie podstawowych informacji o elementach.</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+NAME    -   Nazwa elementu
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+h, human:
+    Wyświetl nazwy pól informacji, daty, uprawnienia i rozmiary elementów w formacie bardziej
+    czytelnym dla człowieków.
+l, link:
+    Włącza rozwiązywanie linków symbolicznych.
+f, field:
+    Wyświetla tylko wybrane informacje pliku.
+    Ten przełącznik wymaga przynajmniej jednej wartości określającej jakie dokładnie pole
+    chcesz wyświetlić na temat podanego pliku.
+    Wartości należy oddzielać przecinkami.
+</pre>
+
+<h3>Dostępne wartości dla przełącznika "field":</h3>
+<pre>
+name    Nazwa elementu
+type    Typ elementu
+size    Rozmiar elementu
+perms   Uprawnienia do elementu
+usrown  Właściciel elementu
+grpown  Grupa właścicielska elementu
+inode   Identyfikator pliku
+hlinks  Ilość twardych dowiązań
+atime   Czas ostatniego odczytania elementu
+ctime   Czas utworzenia elementu
+mtime   Czas ostatniej modyfikacji elementu
+</pre>
+
+<h3>Przykłady użycia:</h3>
+<p>Jeśli chcesz sprawdzić informacje dla dowolnego elementu, wystarczy, że tylko wpiszesz jego nazwę.</p>
+<pre>
+&gt; md "The Biggest File Ever!.pdf"
+name: The Biggest File Ever.pdf
+type: File
+size: 1
+perms: 0755
+usrown: 1000
+grpown: 1000
+inode: 2137
+hlinks: 2
+atime: 1704050600
+ctime: 1704025217
+mtime: 1704025217
+</pre>
+<p>Możesz też użyć bardziej czytelnego dla ludzi formatu, dzięki przełącznikowi "human" albo "h".</p>
+<pre>
+&gt; md "The Biggest File Ever!.pdf" -h
+Name: The Biggest File Ever!.pdf
+Type: File
+Size: 1B
+Permissions: -rwxr-xr-x
+Owner (user): 1000
+Owner (group): 1000
+Inode: 2137
+Hard links: 2
+Accessed: 31/12/2023 19:23:20
+Created: 31/12/2023 12:20:17
+Modified: 31/12/2023 12:20:17
+</pre>
+<p>Da się też wyświetlić tylko nieliczne z wielu dostępnych informacji</p>
+<pre>
+&gt; md "The Biggest File Ever!.pdf" -f=name,perms,size
+name: The Biggest File Ever!.pdf
+perms: 0755
+size: 1
+&gt; md "The Biggest File Ever!.pdf" -h -f=name,perms,size
+Name: The Biggest File Ever!.pdf
+Permissions: -rwxr-xr-x
+Size: 1B
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 1 stycznia 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

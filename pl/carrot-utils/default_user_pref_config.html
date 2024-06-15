@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - users.toml</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>default_user_pref.toml</h1>
+<h3>Krótki opis</h3>
+<p>Wytycza domyślne ustawienia dla każdego, nowego użytkownika</p>
+<h3>Pełny opis</h3>
+<p>Wytycza domyślne ustawienia dla każdego, nowego użytkownika</p>
+
+<h3>Dostępne lokalizacje:</h3>
+<ul>
+    <li>/etc/default_user_pref.toml</li>
+</ul>
+
+<h3>Dostępne parametry:</h3>
+<pre>
+minimal_uid: [liczba]
+    Jeżeli zostanie wykonana próba dodania nowego użytkownika do systemu, to system postara się
+    odznaleźć najbliższy, nie zajęty identyfikator użytkownika i przepisze go mu.
+    Tu możesz zdefiniować jaki identyfikator system może zostać przypisać komuś w sposób
+    automatyczny
+minimal_gid: [liczba]
+    Podobne co w przypadku minimal_uid, ale dla identyfikatorów grup
+password_miminum_len: [tekst]
+    Minimalna dozwolona ilość znaków w haśle.
+    Ustaw na "0" jeżeli chcesz wyłączyć to zabezpieczenie (niezalecane)
+password_maxinum_len: [tekst]
+    Maksymalna dozwolona ilość znaków w haśle.
+    Ustaw na "0" jeżeli chcesz wyłączyć to zabezpieczenie
+check_capitalisation: [wartość logiczna]
+    Wymuś, aby hasła zawierały małe i duże litery
+check_numbers: [wartość logiczna]
+    Wymuś, aby hasła zawierały liczby
+check_special_chars: [wartość logiczna]
+    Wymuś, aby hasła zawierały znaki specjalne takie jak wykrzykniki czy znaki zapytania
+can_change_password: [wartość logiczna]
+    Jeżeli ustawione na "true", każdy nowo dodany użytkownik będzie mógł domyślnie zmienić
+    swoje własne hasło
+locked: [wartość logiczna]
+    Jeżeli ustawione na "true", każdy nowo dodany użytkownik zostanie pozbawiony możliwości
+    logowania
+create_profile: [wartość logiczna]
+    Jeżeli ustawione na "true", systemowe narzędzia postarają się stworzyć katalog domowy dla
+    nowo dodanych użytkowników
+default_profile_dir: [tekst]
+    Podczas tworzenia nowych użytkowników, system postara się skopiować do ich katalogu domowego
+    dane z tego folderu
+shell: [tekst]
+    Domyślny program startowy dla nowo dodanych użytkowników
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Plik konfiguracyjny<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.2 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 1 czerwca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> TOML<br>
+</p>
+
+</body>
+</html>

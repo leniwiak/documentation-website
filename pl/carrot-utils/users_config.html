@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - users.toml</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>users.toml</h1>
+<h3>Krótki opis</h3>
+<p>Przechowuje listę użytkowników</p>
+<h3>Pełny opis</h3>
+<p>Przechowuje listę użytkowników</p>
+
+<h3>Dostępne lokalizacje:</h3>
+<ul>
+    <li>/etc/users.toml</li>
+</ul>
+
+<h3>Dostępne parametry:</h3>
+<pre>
+id: [liczba]
+    Identyfikator użytkownika
+name: [tekst]
+    Nazwa nowego użytkownika
+description: [tekst]
+    Opis użytkownika
+groups: [lista(liczba)]
+    Grupy, do których wpisany jest użytkownik
+password: [tekst]
+    Tekst zaszyfrowany przez SHA512 zawierający hasło użytkownika
+password_change_date: [liczba]
+    Zapisana data ostatniej zmiany hasła
+password_expiration_date: [liczba]
+    Data, zaplanowanego wygaśnięcia hasła użytkownika
+can_change_password: [wartość logiczna]
+    Informacja, czy użytkownik ma uprawnienie aby zmienić hasło samemu sobie
+creation_date: [liczba]
+    Data utworzenia użytkownika
+locked: [wartość logiczna]
+    Wartość oznaczająca czy użytkownik może zalogować się do systemu
+lock_date: [liczba]
+    Data zaplanowanego zablokowania możliwości logowania dla użytkownika
+profile_dir: [tekst]
+    Ścieżka do profilu, czyli folderu w którym przechowywane są prywatne dane użytkownika
+shell: [tekst]
+    Program do uruchomienia po zalogowaniu
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Plik konfiguracyjny<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.2 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 1 czerwca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> TOML<br>
+</p>
+
+</body>
+</html>

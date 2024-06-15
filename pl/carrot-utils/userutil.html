@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - userutil</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>userutil</h1>
+<h3>Krótki opis</h3>
+<p>Modyfikuje spis użytkowników</p>
+<h3>Pełny opis</h3>
+<p>Program, który pozwala na zmodyfikowanie lub wyświetlenie informacji o użytkowniku na systemie</p>
+
+<h3>Uprawnienia:</h3>
+<p>
+Domyślnie, system powinien umieścić plik binarny bieżącego programu z uprawnieniami setuid oraz z właścicielem
+ustawionym na użytkownika "root" co oznacza, że ten program zawsze będzie wykonywany jako "root" niezależnie
+od tego kto jest użytkownikiem wywołującym. Mimo tego, program jednak powinien być postrzegany jako bezpieczny,
+ponieważ dobrze chroni system przed poważnymi zmianami wykonywanymi przez potencjalnie nieuprawnione osoby.
+<br><br>
+Użytkownicy inni niż "root" mogą:
+</p>
+<ul>
+    <li>Zmienić hasło dla samego siebie ale pod warunkiem, że nie zostali zablokowani przez administratora</li>
+    <li>Wyświetlić wszystkie informacje o samym sobie</li>
+    <li>Sprawdzić, czy na systemie znajduje się użytkownik o danym ID lub nazwie</li>
+</ul>
+
+<h3>O różnicach pomiędzy rodzajami identyfikatorów użytkowników:</h3>
+<p>
+Po zalogowaniu do konsoli, system przypisuje nowej sesji pewne ID użytkownika. Może to być liczba zebrana z systemowych ustawień
+albo z jakiejś zmiennej środowiskowej. Ustawiane są EUID i RUID (Efektywne ID użytkownika i realne ID użytkownika).
+Obie te zmienne są od samego początku ustawione na te same wartości.
+<br>
+RUID mówi programom kto jest właścicielem sesji i kto uruchamia programy.
+Zazwyczaj, gdy wywołujesz jakieś nowe polecenia w konsoli, te powinny pracować jako ty a więc i na twoim poziomie uprawnień.
+Typowa aplikacja nie pozwoli ci na uzyskanie dostępu do zastrzeżonych plików innego użytkownika - to nie problem aplikacji, to
+problem wynikający z braku uprawnień.<br>
+Rozwiązaniem na ten problem jest proste - wystarczy zmienić EUID programu na ID odpowiedniego użytkownika.
+To spowoduje, że program zadziała jako ktoś inny i uzyska dostęp do interesujących ciebie materiałów.
+Po skończeniu działania programu, EUID zostanie przywrócone do poprzedniej wartości.
+</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+1.
+idreal	-   Pokaż realny identyfikator aktualnie zalogowanego użytkownika
+            Ta opcja może zostać wywołana sama - bez innych opcji ani przełączników.
+ideffect-   Pokaż efektywny identyfikator użytkownika
+            Ta opcja może zostać wywołana sama - bez innych opcji ani przełączników.
+id      -   Pokaż oba identyfikatory aktualnie zalogowanego użytkownika.
+            Ta opcja może zostać wywołana sama - bez innych opcji ani przełączników.
+add     -   Dodaj użytkownika do systemu.
+del     -   Usuń użytkownika z systemu.
+update  -   Zmień istniejącego użytkownika systemu.
+list    -   Wyświetl wszystkie informacje o użytkowniku.
+isthere -   Sprawdź, czy podany użytkownik znajduje się w systemie.
+whois   -   Pokaż, który użytkownik posiada dane ID lub na jaki login wskazuje dane ID
+
+2.
+NAME    -   Nazwa dowolnego użytkownika systemie.
+ID      -   Identyfikator dowolnego użytkownika w systemie.
+            Wprowadzenie identyfikatora NIE jest wspierane, gdy używany jest przełącznik "add".
+            To dlatego, że określenie nazwy nowo dodawanego użytkownika jest niezbędne do jego
+            późniejszej możliwości logowania i działania. Nie można dodać użytkownika podając sam
+            identyfikator.
+            Program sam powinien zająć się unikatowym identyfikatorem podczas tej operacji.
+            Jeżeli szukasz możliwości dodania użytkownika z niestandardowym identyfikatorem,
+            poczytaj o przełączniku "-id".
+</pre>
+<p>
+    <b>Uwaga:</b> Kolejność podanych opcji ma znaczenie! To, co ma zostać wpisane i kiedy, zostało oznaczone
+    odpowiednimi numerami nad listą opcji.<br>
+</p>
+
+<h3>Ograniczenia podczas wykonywania operacji:</h3>
+<p>
+    Bieżący program potrafi obsłużyć wyłącznie jedno polecenie naraz.
+    To oznacza, że łączenie opcji takich jak "add" i "del" nie wchodzi w rachubę.
+    Prościej ujmując - nie możesz dodać i usunąć użytkownika w tym samym czasie. Brzmi jak dość logiczne
+    zachowanie.
+    <br><br>
+    Podobnie jest z operowaniem na więcej niż jednym użytkowniku naraz. Nie możliwe jest dodanie, usunięcie
+    czy zaktualizowanie atrybytów więcej niż jednemu użytkownikowi w tym samym momencie bo łatwo jest o pomyłkę
+    i wprowadzenie niechcianych zmian nie tam gdzie trzeba.
+</p>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+id:
+    Pozwala ustawić identyfikator użytkownika.
+    Wymaga podania numerycznej wartości.
+    Działa tylko z opcjami "add", "del" i "update".
+name:
+    Pozwala ustawić nazwę użytkownika.
+    Wymaga podania tekstowej wartości.
+    Działa tylko z opcją "update".
+desc:
+    Zmienia opis użytkownika
+    Wymaga podania tekstowej wartości.
+    Działa tylko z opcjami "add", "del" i "update".
+expire:
+    Ustala, kiedy użytkownik musi zmienić swoje hasło
+    Wymaga podania numerycznej wartości.
+    Działa tylko z opcjami "add", "del" i "update".
+pass:
+    Konfiguruje hasło dla użytkownika.
+    Podanie wartości tekstowej jest wspierane, ale nie obowiązkowe.
+    Rekomendowane jest użycie przełącznika "-pass" bez wartości. Zmusi to program do spytania
+    użytkownika o hasło w bezpiecznym terminalu, bez zagrożenia. W innym przypadku, twoje hasło
+    będzie bardziej widoczne, co może być groźne na przykład gdy wokół Ciebie znajduje się ktoś,
+    kto może Cię obserwować.
+    Działa tylko z opcjami "add", "del" i "update".
+chpass:
+    Określa, czy użytkownik może zmienić swoje własne hasło.
+    Wymaga podania wartości "true" lub "false".
+    Działa tylko z opcjami "add", "del" i "update".
+lock:
+    Określa, czy użytkownik może zalogować się do systemu.
+    Wymaga podania wartości "true" lub "false".
+    Działa tylko z opcjami "add", "del" i "update".
+lockdate:
+    Określa, kiedy konto użytkownika ma zostać zablokowane
+    Wymaga podania numerycznej wartości.
+    Działa tylko z opcjami "add", "del" i "update".
+profile:
+    Konfiguruje katalog, w którym ma być przechowywany profil użytkownika, czyli wszystkie jego
+    prywatne dane.
+    Wymaga podania tekstowej wartości.
+    Działa tylko z opcjami "add", "del" i "update".
+shell:
+    Zmienia domyślny program, który ma być uruchomiony zaraz po zalogowaniu.
+    Wymaga podania tekstowej wartości.
+    Działa tylko z opcjami "add", "del" i "update".
+p:
+    Automatycznie utwórz katalog domowy dla użytkownika
+    Działa wyłącznie z opcją "add"
+P:
+    Nie twórz katalogu domowego dla użytkownika
+    Działa wyłącznie z opcją "add"
+d:
+    Usuń katalog domowy
+    Działa wyłącznie z opcją "del"
+</pre>
+<p>Uwaga: Ten program zawsze wymaga podania przynajmniej jednego przełącznika!</p>
+
+<h3>Powiązane pliki konfiguracyjne:</h3>
+<p>
+    <a href="users_config.html">users.toml</a> - Przechowuje listę użytkowników<br>
+    <a href="default_user_pref_config.html">default_user_pref.toml</a> - Wytycza domyślne ustawienia dla każdego,
+    nowego użytkownika<br>
+</p>
+
+<h3>Przykłady działania:</h3>
+<p>Możesz wyświetlić identyfikator aktualnie działającego użytkownika:</p>
+<pre>
+&gt; userutil id
+1000
+&gt;
+</pre>
+
+<p>Userutil jest programem, który wymaga podwyższenia uprawnień w niektórych przypadkach.
+Jeżeli zobaczysz powiadomienie o błędzie odczytu/zapisu pliku konfiguracyjnego, spróbuj wykonać polecenie jako
+użytkownik uprzywilejowany:</p>
+<pre>
+&gt; userutil list root
+Failed to open configuration. Probably, you don't have sufficient permissions: Failed to open configuration file
+&gt;
+&gt; rex userutil list root
+User {
+    id: 0,
+    name: "root",
+    description: "",
+    groups: [
+        0,
+    ],
+    password: "",
+    password_change_date: 1717078568,
+    password_expiration_date: 0,
+    can_change_password: true,
+    creation_date: 1717078568,
+    locked: false,
+    lock_date: 0,
+    profile_dir: "/root/",
+    shell: "/bin/rush",
+}
+&gt;
+</pre>
+
+
+
+<p>Możesz sprawdzić, czy użytkownik o podanym ID lub nazwie istnieje lub nie.
+Puste wyjście oznacza brak użytkownika:</p>
+<pre>
+&gt; userutil isthere 0
+0:root
+&gt; useutil isthere romeo
+1000:romeo
+&gt; useutil isthere juliet
+&gt; userutil isthere dog
+</pre>
+
+<p>Dodawanie użytkownika z domyślnymi ustawieniami lub z własnymi właściwościami:</p>
+<pre>
+&gt; userutil add david
+&gt; userutil update david -pass
+Password: This prompt is secured. You're typing silently.
+Password (once again): This prompt is secured. You're typing silently.
+&gt; userutil list david
+User {
+    id: 1001,
+    name: "david",
+    description: "",
+    groups: [
+... Shortened output ...
+&gt; userutil add trash -id 1005 -desc "A testing account for unimportant things"
+&gt; userutil list david
+User {
+    id: 1005,
+    name: "susan",
+    description: "A testing account for unimportant things",
+    groups: [
+... Shortened output ...
+</pre>
+
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.2 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 1 czerwca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - af</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>af</h1>
+<h3>Krótki opis</h3>
+<p>Tworzy pliki</p>
+<h3>Pełny opis</h3>
+<p>Program pozwalający na dodanie nowego pliku do katalogu</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+FILE    -   Nazwa dowolnego pliku do utworzenia
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+v, verbose:
+    Dokładnie informuje o poczynaniach programu
+i, ignore:
+    Ignoruj błędy informujące, że plik już istnieje
+</pre>
+
+<h3>Przykłady działania:</h3>
+<p>Jeśli chcesz, możesz dodać nowy plik do aktualnego katalogu. Nazwy plików do dodania oddzielaj spacją, a gdy jakiejś potrzebujesz, umieść wyrażenie w cudzysłowach (Pojedynczych albo podwójnych).</p>
+<pre>
+&gt; l
+./:
+&gt; af File
+&gt; l
+./:
+File
+</pre>
+<p>Możesz też utworzyć więcej niż jeden plik za pomocą jednej komendy. Nazwy plików do dodania oddzielaj spacją, a gdy jakiejś potrzebujesz, umieść wyrażenie w cudzysłowach (Pojedynczych albo podwójnych).</p>
+<pre>
+&gt; l
+./:
+&gt; af "Better File" "Worse File"
+&gt; l
+Better File
+File
+Worse File
+&gt;
+</pre>
+
+<p>Dodaj plik do podkatalogu, jeśli chcesz</p>
+<pre>
+&gt; ad "My Stuff"
+&gt; af "My Stuff/Butterfly"
+&gt; l
+Better File
+File
+My Stuff/
+Worse File
+&gt; l "My Stuff"
+Butterfly
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.1 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 1 czerwca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

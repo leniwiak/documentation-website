@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - l</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>l</h1>
+<h3>Krótki opis</h3>
+<p>Wyświetla zawartość katalogów</p>
+<h3>Pełny opis</h3>
+<p>Listuje zawartość katalogu</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+DIR     -   Nazwa katalogu do listowania
+            Jeśli nie podasz żadnej nazwy katalogu, program wyświetli zawartość aktualnie używanego
+            folderu.
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+h, hidden:
+    Pokaż ukryte pliki i katalogi
+r, rec:
+    Wyświetl także zawartość podkatalogów
+s, nosort:
+    Nie sortuj wyniku alfabetycznie
+t, notitle:
+    Nie pokazuj nazwy prezentowanego folderu
+c, color:
+    Pokoloruj wyjście programu
+</pre>
+
+<h3>Przykłady działania:</h3>
+<p>Wyświetlanie aktualnego katalogów, w którym się znajdujesz jest dziecinnie proste. Użyj do tego nazwy programu, lub wpisz kropkę (".").</p>
+<pre>
+&gt; l
+./:
+Books/
+todo.txt
+done.txt
+&gt; l .
+.:
+Books/
+todo.txt
+done.txt
+</pre>
+<p>Możesz szybko sprawdzić, co znajduje się w podkatalogach, albo tylko w jednym z nich.</p>
+<pre>
+&gt; l -r
+./:
+Books/
+Books/Help/
+Books/Help/Ferdydurke.pdf
+Books/Read/
+Books/Read/Bible.pdf
+Books/Read/Mały Książę.pdf
+Books/Read/The Rust Programming Language.pdf
+Books/Unread/
+Books/Unread/My Own Summer.pdf
+todo.txt
+done.txt
+&gt; l Books/Unread
+Books/Unread:
+My Own Summer.pdf
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.6 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 8 kwietnia 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

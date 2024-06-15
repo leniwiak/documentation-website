@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - ad</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>ad</h1>
+<h3>Krótki opis</h3>
+<p>Tworzy katalogi</p>
+<h3>Pełny opis</h3>
+<p>Program pozwalający na utworzenie pojedynczego folderu lub poprzedzającego go drzewa katalogów.</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+DIR     -   Nazwa dowolnego katalogu do utworzenia
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+v, verbose:
+    Dokładnie informuje o poczynaniach programu.
+p, parents:
+    Dodaj brakujące katalogi nadrzędne
+i, ignore:
+    Ignoruj błędy informujące, że katalog już istnieje
+</pre>
+
+<h3>Przykłady działania:</h3>
+<p>Jeśli chcesz, możesz stworzyć folder o dowolnej nazwie. Nazwy folderów do dodania oddzielaj spacją, a gdy jakiejś potrzebujesz, umieść wyrażenie w cudzysłowach (Pojedynczych albo podwójnych).</p>
+<pre>
+&gt; l
+./:
+&gt; ad "My Sfuff" 'Important Things' Documents
+&gt; l
+./:
+Documents/
+Important Things/
+My Sfuff/
+</pre>
+<p>Możesz nowy folder, wraz z tymi nadrzędnymi</p>
+<pre>
+&gt; l "Important Things"
+Important Things:
+&gt; ad "Important Things/School/Chemistry/Exercises"
+Important Things/School/Chemistry/Exercises: Directory wasn't added: NotFound!
+&gt; ad "Important Things/School/Chemistry/Exercises" -p
+&gt; l "Important Things"
+Important Things:
+School/
+&gt; l "Important Things/School"
+School:
+Chemistry/
+&gt; l "Important Things/School/Chemistry/Exercises"
+Important Things/School/Chemistry/Exercises:
+&gt;
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.1 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 13 stycznia 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

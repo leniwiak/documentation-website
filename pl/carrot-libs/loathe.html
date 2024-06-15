@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - loathe</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>loathe</h1>
+<h3>Krótki opis</h3>
+<p>Niszczy zasoby lub tworzy pliki o wybranym rozmiarze</p>
+<h3>Pełny opis</h3>
+<p>Narzędzie pozwalające na zapisanie losowych danych do istniejących plików.</p>
+
+<h3>Opis problemu:</h3>
+<p>Wyobraź sobie, że masz przed sobą ołówek, gumkę i kartkę papieru. Za pomocą ołówka, możesz napisać lub narysować na kartce co tylko
+zechcesz. Gdy popełnisz jakiś błąd albo zabraknie ci miejsca, możesz skorzystać z gumki i poświęcić trochę czasu na zamazanie tego, co
+stworzyłeś/stworzyłaś wcześniej. Problem w tym, że częste zamazywanie informacji za pomocą naszej wyimaginowanej gumki zabiera sporo cennego
+czasu. Podobnie zachowują się też dyski w naszych komputerach, na których co sekundę zapisywane i usuwane są jakieś dane przez ciebie, albo
+w tle, przez twój system operacyjny. Aby ograniczyć niepotrzebne bawienie się w czyszczenie informacji podczas kasowania danych, komputery
+wolą po prostu oznaczyć sobie dane elementy jako niepotrzebne. Wszystkie nieużytki zostaną nadpisane dopiero kiedy to będzie potrzebne.
+<br><br>
+Dlatego usunięcie pliku nie gwarantuje nam nigdy, że kompletnie pozbędziemy się go z dysku! Jeśli chcesz pozbyć się pewnych informacji
+nieodwracalnie i natychmiastowo, możesz użyć tego programu.
+</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+FILE    -   Nazwa dowolnego zasobu do nadpisania
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+a, ask:
+    Pytaj, przed napisywaniem
+r, random:
+    Niech każdy zapisany w zasobie bajt będzie losowy
+z, zero:
+    Niech każdy zapisany w zasobie bajt będzie zerem
+l, len:
+    Pozwala na określenie ilości bajtów do zapisania
+v, verbose:
+    Informuje o poczynaniach programu
+</pre>
+
+<h3>Przykłady działania:</h3>
+<p>A o to jak nadpisać dysk losowymi danymi:</p>
+<pre>
+&gt; p "Yeet Me"
+Let me go...
+&gt; loathe "Yeet Me"
+&gt; p "Yeet Me"
+Yeet Me: Cannot preview the file: InvalidData!
+</pre>
+<p>Dla przyspieszenia operacji, możesz także zapisać do pliku same zera. Zauważ, że "loathe" nigdy nie zmienia liczby bajtów w pliku (jego rozmiaru)</p>
+<pre>
+&gt; loathe "Yeet Me" -z
+&gt; p "Yeet Me"
+0000000000000
+</pre>
+<p>Da się zmienić preferencję, co do ilości bajtów, które powinny być wpisane do zasobu.</p>
+<pre>
+&gt; loathe "Yeet Me" -z -l=500
+&gt; p "Yeet Me"
+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 1 stycznia 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

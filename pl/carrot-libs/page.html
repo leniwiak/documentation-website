@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - page</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>page</h1>
+<h3>Krótki opis</h3>
+<p>Przewija długie zawartości</p>
+<h3>Pełny opis</h3>
+<p>Proste narzędzie umożliwiające wyświetlenie bardzo długich zawartości poleceń lub zasobów w terminalach nie wspierających możliwości przewijania tekstu</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+NAME    -   Nazwa dowolnego zasobu do przetworzenia.
+            Do poprawnego działania programu wymagane jest podanie przynajmniej jednej nazwy
+	    zasobu, chyba że przekazywany jest mu wynik z innego polecenia
+</pre>
+
+<h3>Dostępne skróty klawiszowe:</h3>
+<pre>
+up, page_up:
+    Przewija tekst do góry
+down, page_down:
+    Przewija tekst na dół
+control_c, control_q, q:
+    Zamyka program
+</pre>
+
+<h3>Ten program obsługuje przekierowywanie wyników poleceń</h3>
+<p>Oprócz dopisywania opcji do programu z nazwami zasobów w systemie plików do oczytania, możesz też użyć wyniku innego polecenia, przekierowanego za pomocą znaku "pipe" (|).</p>
+
+<h3>Przykłady działania:</h3>
+<p>Jeżeli pracujesz w środowisku, które nie obsługuje możliwości przewijania bardzo długiego tekstu w konsoli, możesz użyć tego programu do przechwycenia tekstu
+i do wyświetlenia go na scrollowalnym ekranie:</p>
+<pre>
+&gt; page very_long_file.txt
+&gt; very_talkative_command | page
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.3 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 21 stycznia 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

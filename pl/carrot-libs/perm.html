@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - perm</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>perm</h1>
+<h3>Krótki opis</h3>
+<p>Zmienia uprawnienia do zasobów</p>
+<h3>Pełny opis</h3>
+<p>Program, który pozwala na zmienienie uprawnień do elementów.</p>
+
+<h3>Kilka słów o stanie gotowości tego programu:</h3>
+<p>
+Na dzień dzisiejszy nie da się ustawić właściciela elementów wedle nazwy użytkownika lub grupy.
+W przyszłości dodamy narzędzia "get" i "set" oraz stosowne do nich biblioteki, pomagające w zbieraniu informacji
+na temat systemu i między innymi, jego użytkowników. Na razie program jest jednak dość surowy i niegotowy.<br>
+Brakuje też wsparcia na ACLe.
+</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+M,M,M,S   - Tryb uprawnień do zastosowania dla podanego elementu
+            Pierwsze trzy tryby uprawnień zawsze określa się za pomocą liter "r", "w", i "x", z
+            kolei tryb czwarty, tylko za pomocą liter "s", "g" i "u". Jeśli chcesz pominąć
+            ustawianie jakiegoś trybu, możesz zastąpić wszelkie litery uprawnień znakiem "n".
+            Możesz też zaoszczędzić trochę czasu i nie uzupełniać n-kami uprawnień od lewej strony,
+            gdy ci na nich nie zależy.
+NAME    -   Nazwa dowolnego elementu do przetworzenia.
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+v, verbose:
+    Dokładnie informuje o poczynaniach programu.
+r, rec:
+    Zmieni też uprawnienia wszystkich podelementów w podanym katalogu
+</pre>
+
+<h3>Wyjaśnienie trybów uprawnień</h3>
+<p>
+Pierwsze trzy tryby uprawnień stosują się kolejno do użytkownika, grupy i innych, niezdefiniowanych
+użytkowników i grup. Każdemu z tych podmiotów można nadać specjalny zestaw uprawnień, które
+dostosowujemy za pomocą liter "r", "w" i "x". A o to znaczenie tych liter:<br>
+r (read)    -   Nadaje uprawnienie wyświetlenia zawartości elementu<br>
+w (write)   -   Daje możliwość zapisania nowych danych do zasobu albo tworzenia czy
+                usuwania ich w katalogu.<br>
+x (execute) -   Daje możliwość uruchomienia danego pliku binarnego albo skryptu, lub
+                przejścia do folderu<br>
+
+Ostatni tryb uprawnień jest stosowany ogólnie, dla wszystkich podmiotów i pozwala na dodanie
+jeszcze dodatkowych uprawnień, specjalnie dla właściciela i grupy (nie dla niezdefiniowanych).
+Określa się go literami "t", "g" i "u", a każda z nich oznacza:<br>
+t (sticky)  -   Zabrania usuwania elementów z katalogu innym użytkownikom niż właściciel<br>
+u (setuid)  -   Pozwala na uruchomienie pliku binarnego lub skryptu jako właściciel<br>
+g (setgid)  -   Pozwala na uruchomienie pliku binarnego lub skryptu jako grupa właścicielska<br>
+</p>
+
+<h3>Przykłady działania:</h3>
+<p>Możesz stworzyć skrypt i nadać mu prawa wykonywania. Zwróć uwagę, że nie musisz dopisywać niepotrzebnych
+literek "n", gdy zmieniasz uprawnienia dla siebie.
+</p>
+<pre>
+&gt; ./script
+./script: Execution failed: PermissionDenied!
+&gt; md -h -f=perms script
+Permissions: -rw-rw-rw-
+&gt; perm rwx script
+&gt; md -h -f=perms script
+Permissions: -rwxr-xr-x
+&gt; ./script
+It works!
+</pre>
+
+<p>UWAGA: Zwróć uwagę, że poniższe przykłady przedstawiają różne terminale, należące do różnych, wymyślonych użytkowników.</p>
+<p><b>josh:</b> Możesz bardzo łatwo stworzyć wspólny folder dla wszystkich użytkowników twojego systemu</p>
+<pre>
+&gt; getenv USER
+josh
+&gt; rex ad /our
+&gt; md /our -h -f=usrown,grpown
+Owner (user): 0
+Owner (group): 0
+&gt; rex own 1000,1000 /our
+&gt; md /our -h -f=usrown,grpown,perms
+Owner (user): 1000
+Owner (group): 1000
+Permissions: -rwxr-xr-x
+&gt; perms n,rwx,rwx /our
+&gt; md /our -h -f=perms
+Permissions: -rwxrwxrwx
+</pre>
+
+<p><b>jane:</b> Dzięki poleceniom z przykładu powyżej, inny użytkownik może przejść do tego folderu
+i dodać do niego pliki dla siebie, ciebie i innych.</p>
+<pre>
+&gt; getenv USER
+jane
+&gt; gt /our
+&gt; af Research.txt
+&gt; l
+./:
+Research.txt
+</pre>
+
+<p><b>josh:</b> Możesz zabronić innym usuwania plików w katalogu</p>
+<pre>
+&gt; perm n,n,n,t /our
+</pre>
+
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 23 marca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

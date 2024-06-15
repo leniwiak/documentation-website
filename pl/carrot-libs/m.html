@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - m</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>m</h1>
+<h3>Krótki opis</h3>
+<p>Przenosi zasoby</p>
+<h3>Pełny opis</h3>
+<p>Program, który potrafi zmienić ścieżkę elementu na dysku.</p>
+
+<h3>Przenoszenie danych pomiędzy dyskami:</h3>
+<p>
+Obecnie, przenoszenie plików pomiędzy dyskami za pomocą tego programu jest niemożliwe.
+<br><br>
+Trwają prace nad sensowną implementacją funkcji, która sama zajmie się kopiowaniem danych pomiędzy
+dyskami, gdy program wywoła ErrorKind::CrossesDevices, ale funkcja pozwalająca na wykrycie typu
+błędu podczas działania programu jest dostępna tylko w eksperymentalnej wersji Rusta.
+</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+NAME    -   Nazwa dowolnego elementu do przetworzenia.
+            Do poprawnego działania programu wymagane jest podanie przynajmniej dwóch nazw elementów.
+            Pomaga to w określeniu, skąd i dokąd użytkownik chce wykonać kopiowanie.
+            Wszystkie elementy, poza ostatnim, których nazwy zostały wpisane do terminala, nazywane
+            są źródłami lub elementami źródłowymi. Będą one przeniesione do elementu, którego nazwa
+            została wpisana jako ostatnia w kolejności. Ostatni element nazywami celem lub
+            elementem docelowym.
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+v, verbose:
+    Dokładnie informuje o poczynaniach programu.
+o, overwrite:
+    Nadpisz element docelowy, jeśli już istnieje, zamiast go pomijać.
+l, link:
+    Gdy okaże się, że elementem docelowym jest dowizanie symboliczne, program postara się
+    odczytać link w celu odnalezienia zasobu do którego ono prowadzi. Następnie, transakcji
+    ulegnie zasób docelowy zamiast miękki link sam w sobie.
+a, ask:
+    Pyta przed nadpisaniem istniejących elementów
+</pre>
+<p>Uwaga: Przełączniki "ask" i "overwrite" kolidują ze sobą!</p>
+
+<h3>Przykłady działania:</h3>
+<p>Możesz zmienić nazwę elementu:</p>
+<pre>
+&gt; l
+./:
+Apple
+Lemon
+Trash/
+&gt; m Apple Pear
+&gt; l
+./:
+Apple
+Pear
+Trash/
+</pre>
+<p>Możesz też przenieść elementy do innych folderów. Zwróć uwagę, że w tym przykładzie próbujemy nadpisać pewien plik, możemy to zrobić dzięki wyznaczonemu do tego przełącznikowi.</p>
+<pre>
+&gt; l . Trash
+.:
+Apple
+Pear
+Trash/
+
+Trash:
+Durian
+&gt; m Pear Trash/Durian
+Trash/Durian: Overwriting is disabled! Refusing to use this destination!
+&gt; m Pear Trash/Durian -o
+&gt;
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 7 kwietnia 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

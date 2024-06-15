@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - count</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>count</h1>
+<h3>Krótki opis</h3>
+<p>Zlicza linie i słowa</p>
+<h3>Pełny opis</h3>
+<p>Program pozwalający na wyświetlenie ilości linii lub znaków umieszczonych w wyznaczonym strumieniu danych</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+NAME    -   Nazwa dowolnego zasobu do przetworzenia.
+            Do poprawnego działania programu wymagane jest podanie przynajmniej jednej nazwy
+	    zasobu, chyba że przekazywany jest mu wynik z innego polecenia
+</pre>
+
+<h3>Ten program obsługuje przekierowywanie wyników poleceń</h3>
+<p>Oprócz dopisywania opcji do programu z nazwami zasobów w systemie plików do oczytania, możesz też użyć wyniku innego polecenia, przekierowanego za pomocą znaku "pipe" (|).</p>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+p, print:
+    Wyświetla zawartość pliku z numerami linii po lewej
+l, lines:
+    Wyświetla tylko ilość linii w pliku
+c, chars:
+    Wyświetla tylko ilość znaków w pliku
+</pre>
+<p>Uwaga: Ten program zawsze wymaga podania przynajmniej jednego przełącznika!</p>
+
+<h3>Przykłady działania:</h3>
+<p>Załóźmy, że posiadamy jeden plik tekstowy w naszym katalogu domowym o nazwie "sample.txt" i takiej zawartości:</p>
+<pre>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Morbi vulputate elit eu elementum lacinia.
+Morbi fermentum, sem eget accumsan finibus,
+dui erat porttitor lectus, sit amet sagittis lectus neque aliquet leo.
+Maecenas non velit cursus, viverra justo in, pellentesque ex.
+Donec a ligula velit. Quisque eget risus sit amet dolor vehicula iaculis.
+</pre>
+
+<p>Możemy policzyć wszystkie znaki i linie z tego pliku</p>
+<pre>
+&gt; count sample.txt -c -l
+6
+904
+</pre>
+
+<p>Możemy użyć tego programu do ponumerowania linii i wyświetlenia ich razem z zawartością pliku</p>
+<pre>
+&gt; count sample.txt -p
+1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+2: Morbi vulputate elit eu elementum lacinia.
+3: Morbi fermentum, sem eget accumsan finibus,
+4: dui erat porttitor lectus, sit amet sagittis lectus neque aliquet leo.
+5: Maecenas non velit cursus, viverra justo in, pellentesque ex.
+6: Donec a ligula velit. Quisque eget risus sit amet dolor vehicula iaculis.
+</pre>
+
+<p>Istnieje możliwość wykorzystania programu do przetworzenia przekierowanego wyniku z innego programu</p>
+<pre>
+&gt; md sample.txt | count -l -p
+1: name: sample.txt
+2: type: File
+3: size: 351
+4: perms: 0664
+5: usrown: 1000
+6: grpown: 1000
+7: inode: 2362413
+8: hlinks: 1
+9: atime: 1705691564
+10: ctime: 1705691564
+11: mtime: 1705691564
+11
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.2 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 1 czerwca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - Słownik</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>Słownik</h1>
+<p>
+    Dla uniknięcia niepotrzebnych nieporozumień pomiędzy mną a wami, czytelnikami, postanowiłem napisać słownik zawierający wytłumaczenie niektórych, używanych przeze mnie sformuowań, które mogą mieć potencjalnie wiele znaczeń.
+</p>
+<p>
+    <b>System plików</b> - Technologia pozwalająca systemowi operacyjnemu na uporządkowany odczyt, zapis i struktyryzację danych<br>
+    <b>Struktura systemu plików</b> - Ogólne pojęcie wszystkich możliwych elementów znajdujących się w waszej pamięci na dyskach<br>
+    <b>Element</b> - To dowolny objekt znajdujący się w strukturze systemu plików. Może to być plik, katalog, urządzenie blokowe albo dowiązanie<br>
+    <b>Plik</b> - Nie chodzi tu o dowolny objekt znajdujący się w strukturze systemu plików, a docelowo o objekt, pozwalający na zapisanie w nim informacji. Bardzo często ludzie lubią za nie uważać wirtualne pliki urządzeń blokowych albo linki.<br>
+    <b>Zasób</b> - Każdy element z wyjątkiem katalogów.<br>
+    <b>Argument</b> - Dowolne słowo wpisane w konsoli terminala, włącznie z nazwą wykonywanego programu. Argumenty są rozdzielone spacjami.<br>
+    <b>Opcja</b> - To takie argumenty, które zaczynają się od dowolnego znaku oprócz myślnika ("-"). Do opcji nie zalicza się pierwszy argument, czyli nazwa wywoływanego programu.<br>
+    <b>Przełącznik</b> - To takie opcje, które zaczynają się od myślnika ("-"). Pozwalają na szybkie dostosowanie preferencji działania programu.<br>
+    <b>Wartość</b> - To informacje dopisane do przełącznika, po znaku równania<br>
+</p>
+<p>
+    <b>Skorzystaj z przykładu:</b>
+</p>
+<pre>
+Wszystkie, wpisane poniżej słowa są argumentami:
+
+read /home/me/chop_suey -r  -s=5
+---- ------------------ --- ----
+  |        |             |   |
+  |        |             |   --- A to, przełącznik z wartością "5"
+  |        |             --- To jest przełącznik
+  |        |--- To jest opcja
+  --- To jest nazwa programu. Nie zalicza się ona do opcji
+</pre>
+
+</body>
+</html>

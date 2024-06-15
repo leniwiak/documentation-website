@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - c</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>c</h1>
+<h3>Krótki opis</h3>
+<p>Kopiuje zasoby</p>
+<h3>Pełny opis</h3>
+<p>Program pozwalający na odczytanie zawartości pliku albo katalogu źródłowego i skopiowanie jego zawartości do miejsca docelowego.</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+NAME    -   Nazwa dowolnego elementu do przetworzenia.
+            Do poprawnego działania programu wymagane jest podanie przynajmniej dwóch nazw elementów.
+            Pomaga to w określeniu, skąd i dokąd użytkownik chce wykonać kopiowanie.
+            Wszystkie elementy, poza ostatnim, których nazwy zostały wpisane do terminala, nazywane
+            są źródłami lub elementami źródłowymi. Będą one kopiowane do elementu, którego nazwa
+            została wpisana jako ostatnia w kolejności. Ostatni element nazywami celem lub
+            elementem docelowym.
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+v, verbose:
+    Dokładnie informuje o poczynaniach programu.
+o, overwrite:
+    Nadpisz element docelowy, jeśli już istnieje, zamiast go pomijać.
+l, link:
+    Gdy okaże się, że elementem docelowym jest dowizanie symboliczne, program postara się
+    odczytać link w celu odnalezienia zasobu do którego ono prowadzi. Następnie, transakcji
+    ulegnie zasób docelowy zamiast miękki link sam w sobie.
+a, ask:
+    Pyta przed nadpisaniem istniejących elementów
+</pre>
+<p>Uwaga: Przełączniki "ask" i "overwrite" kolidują ze sobą!</p>
+
+<h3>Metody kopiowania:</h3>
+<pre>
+Zasób do zasobu:
+    Zawartość zasobu źródłowego zostanie skopiowana do nowej lokalizacji.
+    Program zostanie zamknięty ze statusem błędu, jeśli użytkownik spróbuje wpisać ten sam zasób
+    jako cel i źródło jednocześnie, dla uniknięcia uszkodzenia danych.
+Zasób do katalogu:
+    Nie da się skopiować zawartości zasobu do katalogu, bo katalog sam w sobie nie może zawierać
+    żadnych informacji, od tego są pliki. Dlatego, w takim przypadku, źródło zostanie skopiowane
+    jako podelement w środku katalogu docelowego.
+Katalog do zasobu:
+    Schemat niemożliwy do zrealizowania!
+Katalog do katalogu:
+    Bezpośrednio skopiuje elementy znajdujące się w katalogu źródłowym do katalogu docelowego,
+    chyba że na samym końcu nazwy katalogu źródłowego znajdzie się znak ukośnika ("/").
+    Wtedy zamiast kopiować elementy bezpośrednio ze źródła do celu, wpierw zostanie tam utworzony
+    sam katalog źródłowy - Dopiero w nim zostaną dodane kopie elementów ze źródła.
+Wiele zasobów do zasobu:
+    Schemat niemożliwy do zrealizowania!
+Wiele zasobów do katalogu:
+    Spowoduje skopiowanie wszystkich elementów źródłowych do katalogu docelowego.
+Wiele katalogów do zasobu:
+    Schemat niemożliwy do zrealizowania!
+Wiele katalogów do katalogu:
+    Podobnie, co w przypadku metody "Katalog do katalogu".
+
+Trochę o linkach symbolicznych:
+    Domyślnie, program nie rozwiązuje linków symbolicznych! Oznacza to, że zostaną one potraktowane
+    jako zasób, nawet jeśli prowadzą do katalogu. Przez to, wszystkie kopie linku symbolicznego
+    również będą linkami symbolicznymi prowadzącymi do tej samej ścieżki co oryginał.
+    Jeśli zależy ci np. na skopiowaniu pliku do którego prowadzi link, zamiast na linku samym w
+    sobie - poczytaj o przełączniku 'link'.
+Nadpisywanie elementów:
+    Domyślnie, program odmawia nadpisywania elementów. Jeśli spróbujesz skopiować jakiś element do
+    ścieżki, która już istnieje, program zakończy się ze statusem niepowodzenia.
+</pre>
+
+<h3>Przykłady działania:</h3>
+<p>Załóźmy, że posiadamy dwa foldery w naszym katalogu domowym:</p>
+<pre>
+animals:      dogs:
+- cats        - 1.png
+- hamsters    - 2.png
+- spiders     - 3.png
+</pre>
+<p>Możemy skopiować plik "1.png" w folderze "dogs", do folderu "animals"</p>
+<pre>
+&gt; c dogs/1.png animals
+&gt; l animals
+animals:
+cats/
+hamsters/
+spiders/
+1.png
+</pre>
+
+<p>Możemy też zrobić to, co wcześniej, przy jednoczesnym zmienieniu nazwy elementu</p>
+<pre>
+&gt; c dogs/1.png animals/photo.png
+&gt; l animals
+animals:
+cats/
+hamsters/
+spiders/
+photo.png
+</pre>
+
+<p>Istnieje możliwość skopiowania zawartości folderu, do innego folderu</p>
+<pre>
+&gt; c dogs/ animals
+&gt; l animals
+animals:
+cats/
+hamsters/
+spiders/
+1.png
+2.png
+3.png
+</pre>
+
+<p>Albo skopiowania folderu samego w sobie. Zwróć uwagę na brak ukośnika ("/") po nazwie folderu "dogs"</p>
+<pre>
+&gt; c dogs animals
+&gt; l animals
+animals:
+cats/
+hamsters/
+spiders/
+dogs/
+&gt; l animals/dogs
+1.png
+2.png
+3.png
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 7 kwietnia 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

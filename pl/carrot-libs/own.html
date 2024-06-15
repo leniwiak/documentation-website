@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - own</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>own</h1>
+<h3>Krótki opis</h3>
+<p>Zmienia właściciela zasobów</p>
+<h3>Pełny opis</h3>
+<p>Program, który pozwala na zmienienie użytkownika lub grupy zarządzającej danym elementem.</p>
+
+<h3>Kilka słów o stanie gotowości tego programu:</h3>
+<p>
+Na dzień dzisiejszy nie da się ustawić właściciela elementów wedle nazwy użytkownika lub grupy.
+W przyszłości dodamy narzędzia "get" i "set" oraz stosowne do nich biblioteki, pomagające w zbieraniu informacji
+na temat systemu i między innymi, jego użytkowników. Na razie program jest jednak dość surowy i niegotowy.<br>
+Brakuje też wsparcia na ACLe.
+</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+UID,GID -   Identyfikatory użytkownika i grupy do zastosowania.
+            Jeśli nie chcesz zmieniać użytkownika albo grupy zarządzającej plikiem, to wpisz
+            literkę "n", zamiast jakiejkowiel wartości numerycznej.
+            Możesz też zaoszczędzić trochę więcej czasu i kompletnie pominąć przecinek i myślnik po
+            wpisaniu UID gdy nie zależy ci na grupie.
+NAME    -   Nazwa dowolnego elementu do przetworzenia.
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+v, verbose:
+    Dokładnie informuje o poczynaniach programu.
+r, rec:
+    Zmieni też właściciela wszystkich podelementów w podanym katalogu
+l, link:
+    Pozwól na rozwiązywanie linków symbolicznych
+</pre>
+
+<h3>Przykłady działania:</h3>
+<p>Prosty przykład pokazujący jak zmienić właściciela elementu. Pamiętaj, że do zmiany właściciela elementu zawsze są wymagane uprawnienia super użytkownika!</p>
+<pre>
+&gt; md cool -h -f=usrown,grpown
+Owner (user): 1000
+Owner (group): 1000
+&gt; own 1001,n - cool
+Failed to set ownership: cool
+&gt; rex own 1001,n cool
+&gt; md cool -h -f=usrown,grpown
+Owner (user): 1001
+Owner (group): 1000
+</pre>
+<p>Możesz też zmienić tylko grupę właścicielską, albo obie te rzeczy naraz.</p>
+<pre>
+&gt; rex own n,1002 cool
+&gt; md cool -h -f=usrown,grpown
+Owner (user): 1001
+Owner (group): 1002
+&gt; rex own 1003,1003 cool
+&gt; md cool -h -f=usrown,grpown
+Owner (user): 1003
+Owner (group): 1003
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.2.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 1 stycznia 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

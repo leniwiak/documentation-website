@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-utils" - rex</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>rex</h1>
+<h3>Krótki opis</h3>
+<p>Wykonuje programy jako inny użytkownik</p>
+<h3>Pełny opis</h3>
+<p>Pozwala na zmianę efektywnego identyfikatora użytkownika na inne w celu wykonania polecenia na
+jego poziomie uprawnień</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+CMD     -   Systemowa komenda do wywołania
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+u, user:
+    Identyfikator użytkownika do wywołania polecenia
+    Wymaga podania wartości numerycznej
+    Jeżeli ten przełącznik nie zostanie podany, to program automatycznie wywoła polecenie z EUID
+    równym zero.
+g, gid:
+    Identyfikator grupy do wywołania polecenia
+    Wymaga podania wartości numerycznej
+    Jeżeli ten przełącznik nie zostanie podany, to program automatycznie wywoła polecenie z EGID
+    równym zero.
+b, both:
+    Identyfikatory użytkownika i grupy do wywołania polecenia
+    Wymaga podania dwóch wartości numerycznych oddzielonych przecinkami
+</pre>
+<p>
+    <b>Uwaga:</b> Jeżeli chcesz podać bieżącemu programowi przełączniki takie jak "u" lub "g",
+    musisz pamiętać aby wpisać je w pierwszej kolejności, w przeciwnym wypadku, program REX
+    postara się przesłać wszelkie dostępne przełączniki uruchamianemu programowi.
+</p>
+
+<h3>Przykłady działania:</h3>
+<p>Wywołanie polecenia z podwyższonymi uprawnieniami:</p>
+<pre>
+&gt; ad /private/data
+/private/data: Directory wasn't added because of an error: PermissionDenied!
+&gt; rex /private/data
+&gt;
+</pre>
+<p>Wywołanie polecenia jako inny użytkownik niż "root":</p>
+<pre>
+&gt; userutil id
+1000
+1000
+&gt; rex userutil id
+1000
+0
+&gt; rex -u=7 userutil id
+7
+0
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.3 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 2 czerwca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-utils<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>
