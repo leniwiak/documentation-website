@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-devtools" - split</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>split</h1>
+<h3>Krótki opis</h3>
+<p>Rozdziela wyjście do zasobu i terminala</p>
+<h3>Pełny opis</h3>
+<p>Przechwytuje tekst wypuszczony przez inny program i zapisuje jego wyjście do danych plików
+jednocześnie wyświetlając wszystko w konsoli</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+FILE    -   Nazwa pliku, który ma zostać użyty do wpisania wyjścia polecenia
+</pre>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+a, ask:
+    Zapytaj przez zmodyfikowaniem zasobu jeśli w ogóle istnieje
+o, overwrite:
+    Kompletnie nadpisz zawartość istniejącego zasobu jeśli w ogóle istnieje.
+u, update:
+    Zachowaj obecną zawartość zasobów. Wyjście programu zostanie dopisane pod istniejącą
+    zawartością zasobu.
+    To jest domyślne zachowanie programu.
+</pre>
+
+<h3>Przykłady działania:</h3>
+<p>Użycie tego programu przydaje się, jeśli chcesz udokumentować wyjście pewnego programu przy
+jednoczesnym zbadaniu jego wyjścia na bieżąco:</p>
+<pre>
+&gt; ./fox.sh | split output.txt
+meow!
+meow!
+2+2=5?
+&gt; p output.txt
+meow!
+meow!
+2+2=5?
+&gt;
+</pre>
+<p>Program może zostać użyty do dopisania lub nadpisania treści w plikach:</p>
+<pre>
+&gt; p destroyme.txt
+Some data here, that should be overwritten
+&gt; ./fox.sh | split destroyme.txt -o
+meow!
+meow!
+2+2=5?
+&gt; p destroyme.txt
+meow!
+meow!
+2+2=5?
+&gt; p leaveme.txt
+Some very improrant data here, that should be left without any changes!
+&gt; ./fox.sh | split leaveme.txt -u
+meow!
+meow!
+2+2=5?
+&gt; p leaveme.txt
+Some very improrant data here, that should be left without any changes!
+meow!
+meow!
+2+2=5?
+&gt;
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.1.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 11 lipca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-devtools<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

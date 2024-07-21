@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-devtools" - split</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>seek</h1>
+<h3>Krótki opis</h3>
+<p>Wyświetla najnowsze dodane informacje w danych na żywo</p>
+<h3>Pełny opis</h3>
+<p>Wyświetla na żywo wszystkie nowo dopisane linie w pliku lub w wyjściu programu</p>
+
+<h3>Ograniczenia programu</h3>
+<p>Uwaga! Ten program służy wyłącznie do wyświetlenia świeżo dodanych linii do pliku lub wyjścia
+programu! Bieżący program nie wysyła informacji do użytkownika w przypadku kiedy ze źródła danych
+zostaną skasowane linie lub jeśli zmienią się linie już istniejące.
+<br>
+Użycie bieżącego programu do zdiagnozowania wyjścia spipe'owanego programu, jest zbędne. Programy mogą
+wyłącznie dodawać nowe linie do konsoli. Bez usuwania, ani modyfikowania. Stąd prawdopobonie zbędność tego
+narzędzia w takim przypadku.
+</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+FILE    -   Nazwa pliku, który ma zostać użyty do odczytywania
+</pre>
+
+<h3>Ten program obsługuje przekierowywanie wyników poleceń</h3>
+<p>Oprócz dopisywania opcji do programu z nazwami zasobów w systemie plików do oczytania,
+możesz też użyć wyniku innego polecenia, przekierowanego za pomocą znaku "pipe" (|).</p>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+f, full:
+    Wyświetl całą, dostępną zawartość pliku na samym początku działania programu.
+    To domyślne zachowanie tego programu.
+l, last:
+    Nie wyświetlaj całej, dostępnej zawartości pliku na samym początku działania programu.
+    Przydatne, jeśli interesują ciebie tylko nowo dodane linie.
+s, sleep:
+    Określa czas przerwy pomiędzy kolejnymi testami zmian pliku.
+    Wymaga podania wartości zmiennoprzecinkowej.
+</pre>
+
+<h3>Przykłady działania:</h3>
+<p>Wyświetla dodatkowe linie w pliku:</p>
+<pre>
+Console 1.
+&gt; seek fun_facts.txt
+These are some interesting facts about dogs:
+
+Console 2.
+&gt; say "Snoopy, from Charles M. Schultz’s 'Peanuts' comic strip, is a beagle." &gt;&gt; fun_facts.txt
+
+Console 1.
+&gt; seek fun_facts.txt
+These are some interesting facts about dogs:
+Snoopy, from Charles M. Schultz’s 'Peanuts' comic strip, is a beagle.
+</pre>
+
+<p>Ten program nie informuje użytkownika o usunięciu lub zmodyfikowaniu istniejących linii.
+Przydaje się tylko w chwilach, gdy jakaś linia zostanie dodana do pliku:</p>
+<pre>
+Console 1.
+&gt; seek fun_facts.txt
+These are some interesting facts about dogs:
+Snoopy, from Charles M. Schultz’s 'Peanuts' comic strip, is a beagle.
+
+Console 2.
+&gt; loathe -z -l=1
+
+Console 1.
+&gt; seek fun_facts.txt
+These are some interesting facts about dogs:
+Snoopy, from Charles M. Schultz’s 'Peanuts' comic strip, is a beagle.
+</pre>
+
+<p>Nie trzeba wyświetlać początkowej zawartości pliku:</p>
+<pre>
+Console 1.
+&gt; p text.txt
+Lorem ipsum
+Dolor sit amet
+Blah blah blah
+&gt; seek text.txt
+Lorem ipsum
+Dolor sit amet
+Blah blah blah
+^CSIGINT
+&gt; seek text.txt -l
+^CSIGINT
+&gt;
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.1.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 11 lipca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-devtools<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

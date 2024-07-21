@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "carrot-devtools" - tr</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>tr</h1>
+<h3>Krótki opis</h3>
+<p>Zmienia tekst</p>
+<h3>Pełny opis</h3>
+<p>Program, który pozwala na zmodyfikowanie i wyświetlenie tekstu ze źródła</p>
+
+<h3>Dostępne opcje:</h3>
+<pre>
+NAME    -   Nazwa dowolnego zasobu do przetworzenia
+            Do poprawnego działania programu wymagane jest podanie przynajmniej jednej nazwy
+	    zasobu
+</pre>
+
+<h3>Ten program obsługuje przekierowywanie wyników poleceń</h3>
+<p>Oprócz dopisywania opcji do programu z nazwami zasobów w systemie plików do oczytania, możesz też użyć wyniku innego polecenia, przekierowanego za pomocą znaku "pipe" (|).</p>
+
+<h3>Żadne zmiany nie są wprowadzane do plików</h3>
+<p>
+W momencie kiedy program "TR" otrzyma jakiś zasób z systemu plików użytkownika, to przetworzy go w pamięci i wyświetli zmiany na konsoli tylko do celów prezentacyjnych.
+Niniejszy program nie ma na celu wprowadzania realnych zmian do zasobów w pamięci użytkownika!
+</p>
+
+<h3>Dostępne przełączniki:</h3>
+<pre>
+r, reverse:
+    Obraca tekst linia po linii do góry nogami
+R, reverse-char:
+    Obraza tekst znak po znaku do góry nogami
+t, top:
+    Wyświetla tylko podaną wartość linii od góry
+T, top-char:
+    Wyświetla tylko podaną wartość znaków od początku
+b, bottom:
+    Wyświetla tylko podaną wartość linii od dołu
+B, bottom-char:
+    Wyświetla tylko podaną wartość znaków od końca
+l, line-number:
+    Wyświetla cały tekst źródłowy z numerami linii
+</pre>
+<p>Uwaga: Ten program zawsze wymaga podania przynajmniej jednego przełącznika!</p>
+
+<h3>Przykłady działania:</h3>
+<p>Załóźmy, że posiadamy jeden plik tekstowy w naszym katalogu domowym o nazwie "sample.txt" i takiej zawartości:</p>
+<pre>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Morbi vulputate elit eu elementum lacinia.
+Morbi fermentum, sem eget accumsan finibus,
+dui erat porttitor lectus, sit amet sagittis lectus neque aliquet leo.
+Maecenas non velit cursus, viverra justo in, pellentesque ex.
+Donec a ligula velit. Quisque eget risus sit amet dolor vehicula iaculis.
+</pre>
+
+<p>Możemy wyświetlić tylko pierwszą linię od samego początku zasobu:</p>
+<pre>
+&gt; tr sample.txt -t=1
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+&gt;
+</pre>
+
+<p>Możemy też wyświetlić jeszcze mniej danych. Niech program wyświetli nam tylko trzy pierwsze znaki zasobu:</p>
+<pre>
+&gt; tr sample.txt -T=3
+Lor&gt;
+</pre>
+
+<p>Da się też wyświetlić tylko kilka linii od samego dołu zasobu:</p>
+<pre>
+&gt; tr sample.txt -bottom=2
+Maecenas non velit cursus, viverra justo in, pellentesque ex.
+Donec a ligula velit. Quisque eget risus sit amet dolor vehicula iaculis.
+&gt;
+</pre>
+
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.1.0 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 11 lipca 2024<br>
+    <b>Należy do grupy projektów:</b> carrot-devtools<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>
