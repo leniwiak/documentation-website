@@ -71,7 +71,7 @@ Te informacje to:
 Aby określić, które z tych danych użytkownik chce porównać, należy użyć jednego z poniższych tekstów przed wpisaniem polecenia do wykonania.
 </p>
 <pre>
-:
+OUT:
     STDOUT
 ERR:
     STDERR
@@ -80,7 +80,7 @@ CODE:
 </pre>
 <p>Przykłady użycia tej składni:</p>
 <pre>
-&gt; cmp :say "OK" = "OK"
+&gt; cmp OUT:say "OK" = "OK"
 TRUE
 &gt; cmp CODE:say "OK" = 0
 TRUE
