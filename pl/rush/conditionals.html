@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "rush" - warunki</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>Warunki</h1>
+
+<h3>Czym to jest?</h3>
+<p>
+Wiesz, na pewno, że jedną z wielu zalet wykorzystywania skryptów do codziennej pracy z komendami w konsoli jest możliwość zautomatyzowania całej pracy.
+Wszyskie polecenia jakie zechcesz wykonają się jedno po drugim. To fakt.
+Ale wiesz, że dodatkowym atutem jest także możliwość uwarunkowywania tych komend?
+Oznacza to w skrócie tyle, że możesz wykonać określone komendy tylko i wyłącznie pod warunkiem, że jeszcze inne polecenie się powiedzie lub nie.
+Skrypty uruchamiane w powłoce Rush mają swoją logikę, której działanie zaprezentuję właśnie teraz.
+</p>
+
+<h3>Jeżeli...</h3>
+<p>
+Jednym z kluczowych poleceń warunkowych w powłoce „Rush” jest komenda „if”.
+Zadaniem tego polecenia jest wykonanie wszystkich komend pomiędzy słowem kluczowym „do” i „end” tylko wtedy, gdy komenda po słowie „if”
+zakończy się z powodzeniem.<br>
+</p>
+<pre>
+if normal do
+	command1
+	command2
+	command3
+end
+</pre>
+<p>
+W przykładzie powyżej, polecenia „command1”, „command2” i „command3” zostaną wywołane tylko w momencie, gdy polecenie „normal” zakończy się sukcesem.<br>
+Gdy przykładowe polecenie „normal” zakończy swoje działanie niepowodzeniem lub zwróci błąd, komendy nie uruchomią się.
+</p>
+
+<h3>Więcej warunków</h3>
+<p>
+Tyle że po co się ograniczać tylko do jednego polecenia warunkującego? Gdzie w tym wszystkim zabawa? Czemu by nie móc dać ich jeszcze więcej?
+Jeśli zechcesz, możesz wywołać więcej poleceń warunkujących po komendzie „if”, które będą decydowały o wykonaniu następnych kroków.
+Co więcej, robiąc to, możesz określić, czy zależy Ci na powodzeniu każdego z poleceń, czy tylko jednego z nich.
+</p>
+<pre>
+if cat and dog do
+	command1
+	command2
+	command3
+end
+if meow or how do
+	command4
+	command5
+	command6
+end
+</pre>
+
+<h3>Jeszcze więcej warunków</h3>
+<p>
+Opcjonalnie, gdy jeden warunek i lista poleceń się nie wykonają, masz możliwość zaprogramowania innego warunku i listy poleceń,
+która wykona się tylko gdy poprzednia zostanie ominięta.<br>
+Możesz to zrobić używając polecenia „elseif”.
+</p>
+<pre>
+if something do
+	command1
+elseif something_else do
+	command2
+elseif another_thing do
+	command3
+end
+</pre>
+<p>
+Jeśli przykładowe polecenie „something” zwróci błąd lub zakończy się niepowodzeniem, to wyrażenie warunkowe „if” przeskoczy do następnego wyrażenia „elseif”.
+W takim przypadku, wywołane i sprawdzone zostanie polecenie „something_else” aby przetestować, czy możemy wykonać program „command2”.
+Gdy zostanie ono wywołane, to uciekniemy kompletnie z całego wyrażenia warunkowego. Jeśli nie, to można przejść do dalszych warunków określonych w skrypcie.
+</p>
+
+<h3>Warunek alternatywny</h3>
+<p>
+Jeśli wszystkie warunki z „if” lub „elseif” zostaną ominięte, można skonfigurować zadanie alternatywne, które wykona się w tejże sytuacji.<br>
+Robi się to za pomocą słowa kluczowego „else”.
+</p>
+<pre>
+if something do
+	command1
+elseif something_else do
+	command2
+elseif another_thing do
+	command3
+else
+        command4
+end
+</pre>
+
+<h3>Negacja warunku</h3>
+<p>
+W praktyce, program „if” został zaprogramowany tylko do tego aby wywoływać przekazane mu polecenia i sprawdzać, czy ich kod wyjścia jest równy zero.<br>
+Jeśli tak, to program wie, że może kontynuować wykonywanie zadania.<br><br>
+Tą logikę można jednak odwrócić używając słowa kluczowego „not”.
+</p>
+<pre>
+if command_that_failes do
+	command1
+elseif not command_that_failes do
+	command2
+end
+</pre>
+
+<h3>Szybka modyfikacja zmiennej</h3>
+<p> TODO! </p>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Dokumentacja niezależna. Poradnik.<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.8 i nowszej programu Rush<br>
+    <b>Ostatnia data modyfikacji:</b> 7 grudnia 2024<br>
+    <b>Należy do grupy projektów:</b> rush<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

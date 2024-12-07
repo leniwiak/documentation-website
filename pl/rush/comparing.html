@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "rush" - porównywanie</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>Porównywanie danych</h1>
+
+<h3>Polecenie „cmp”</h3>
+<p>
+Do porównywania ze sobą informacji używa się polecenia „cmp”. To jemu w całości będzie poświęcony ten dokument.<br><br>
+Program „cmp” zawsze wymaga od użytkownika podania dokładnie trzech opcji:
+Pierwszego bloku danych do porówania, typu porówania i drugiego bloku danych do porównania.<br>
+Program „cmp” po zakończeniu swojej pracy wypuszcza do konsoli tekst „TRUE” i nadaje kod wyjściowy „0” jeśli porównanie jest prawdziwe
+lub tekst „FALSE” i kod wyjściowy „1” jeśli porównanie jest NIE prawdziwe.
+</p>
+
+<h3>Wartości numeryczne</h3>
+<p>
+Gdy porównywane są wartości numeryczne, dostępne są poniższe akcje porównawcze:
+</p>
+<pre>
+A &gt; B
+           Większy niż...
+A &lt; B
+           Mniejszy niż...
+A =&gt; B / A &gt;= B
+           Większy lub równy od...
+A =&lt; B / A &lt;= B
+           Mniejszy lub równy od...
+A = B / A == B
+           Równy z...
+A != B / A != B
+           Różny od...
+</pre>
+<p>
+W przykładzie powyżej „A” i „B” oznaczają dwie opcje zawierające wyłącznie liczby.
+</p>
+
+<h3>Wartości tekstowe</h3>
+<p>
+Gdy porównywane są wartości tekstowe, dostępne są poniższe akcje porównawcze:
+</p>
+<pre>
+A = B / A == B
+           Równy z...
+A != B / A != B
+           Różny od...
+A ~ B
+           Zawierający...
+</pre>
+<p>
+W przykładzie powyżej „A” i „B” oznaczają dwie opcje zawierające dowolny tekst.
+</p>
+
+<h3>Porównywanie poleceń</h3>
+<p>
+Program „cmp” jest zdolny również do uruchomienia programów w ukryciu i porównania ich z innymi komendami lub danymi.<br>
+Każda komenda jednak emituje różne rodzaje informacji na wyjściu.
+Te informacje to:
+</p>
+<ul>
+	<li>Kod wyjścia: Liczba identyfikująca rodzaj błedu lub brak błędu (Numer zero oznacza brak błedu).</li>
+	<li>STDOUT: Tekst emitowany na standardowe wyjście, czyli kanał wyprowadzenia tekstu używany gdy wszystko idzie wedle planu.</li>
+	<li>STDERR: Tekst emitowany na wyjście ostrzegawcze, czyli kanał wyprowadzenia tekstu używany gdy występują błędy.</li>
+</ul>
+<p>
+Aby określić, które z tych danych użytkownik chce porównać, należy użyć jednego z poniższych tekstów przed wpisaniem polecenia do wykonania.
+</p>
+<pre>
+:
+    STDOUT
+ERR:
+    STDERR
+CODE:
+    Exit code
+</pre>
+<p>Przykłady użycia tej składni:</p>
+<pre>
+&gt; cmp :say "OK" = "OK"
+TRUE
+&gt; cmp CODE:say "OK" = 0
+TRUE
+&gt;
+</pre>
+
+<h3>Użycie w praktyce</h3>
+<p>
+Polecenia „cmp” możesz użyć w środku logicznych bloków warunkujących takich jak „if”.
+</p>
+<pre>
+if cmp 4 = 4 do
+    say "They're equal!"
+end
+</pre>
+
+<p>
+Powłoka Rush potrafi również wstawić zawartość zmiennych do polecenia „cmp”.
+</p>
+<pre>
+set numer 4
+if cmp $number = 4 do
+    say "They're equal!"
+end
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Dokumentacja niezależna. Poradnik.<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.8 i nowszej programu Rush<br>
+    <b>Ostatnia data modyfikacji:</b> 7 grudnia 2024<br>
+    <b>Należy do grupy projektów:</b> rush<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "rush" - zmienne</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>Zmienne</h1>
+
+<h3>Czym to jest?</h3>
+<p>
+Zadaniem zmiennej jest to, że gdy w skrypcie nastąpi odwołanie do jej nazwy, to zwróci ona swoją przypisaną zawartość.<br>
+Zmienne pomagają w utrzymaniu porządku kodu. 
+</p>
+
+<h3>Kompatybilność i obsługa</h3>
+<p>
+Rush nie jest pełnym językiem programowania, a wyłącznie terminalową powłoką, dlatego posługuje się on wyłącznie zmiennymi środowiskowymi, a nie własną tablicą danych w pamięci.
+Powoduje to, że działanie zmiennych środowiskowych zależy od aktualnie używanego systemu operacyjnego, a nie programu Rush samego w sobie.
+<br><br>
+Twórcy programu Rush nie mogą zapewnić, że działanie zmiennych środowiskowych będzie identyczne w przypadku każdej platformy na której zostanie uruchomiony, oraz że ich implementacja nie ulegnie zmianie w przyszłości.
+</p>
+
+<h3>Definiowanie zmiennej</h3>
+<p>
+Aby skonfigurować zmienną, należy użyć wbudowanej w program Rush komendy „setenv” lub skrótu „set”. Obie komendy wykonują dokładnie to samo.
+</p>
+<pre>
+&gt; set EXAMPLE 5
+&gt; setenv LONGER_EXAMPLE 60
+</pre>
+<p>
+Pierwszy argument polecenia SET lub SETENV definiuje nazwę zmiennej, jaką chcemy stworzyć.
+Drugi argument definiuje jej zawartość.<br>
+Nazwa zmiennej nie może zawierać znaków specjalnych oraz nie może zaczynać się od liczby!
+</p>
+
+<h3>Sprawdzanie zawartości zmiennej</h3>
+<p>
+Gdy skonfigurujesz już jakąś zmienną, pewne jest, że w niektórych przypadkach warto byłoby ją oczywiście sprawdzić.
+W powłoce „Rush” wykonuje się to za pomocą poleceń „getenv” lub „get”. Oba polecenia wykonują dokładnie to samo.
+</p>
+<pre>
+&gt; get EXAMPLE
+5
+&gt; getenv LONGER_EXAMPLE
+60
+&gt;
+</pre>
+<p>
+Polecenie „getenv” i jego skrótowiec „get” obsługują wyświetlanie zawartości tylko jednej zmiennej w tym samym momencie.
+</p>
+
+<h3>Usuwanie zmiennej</h3>
+<p>
+Aby usunąć zmienną środowiskową możesz użyć polecenia „unsetenv” lub „unset”.
+</p>
+<pre>
+&gt; set EXAMPLE 100
+&gt; get EXAMPLE
+100
+&gt; unset EXAMPLE
+&gt; get EXAMPLE
+GETENV FAILED! Variable "EXAMPLE" is not set!
+&gt;
+</pre>
+<p>
+Polecenie „unsetenv” i jego skrótowiec „unset” obsługują usuwanie tylko jednej zmiennej w tym samym momencie.
+</p>
+
+<h3>Szybka modyfikacja zmiennej</h3>
+<p> TODO! </p>
+
+<h3>Dołączanie zmiennej</h3>
+<p>
+Podczas wyświetlania tekstu w konsoli albo działania z jakimiś poleceniami, możesz odnieść się do treści zmiennej używając znaku „$” i wpisując nazwę zmiennej,
+do której chcesz się odwołać.
+</p>
+<pre>
+&gt; set NAME Documents
+&gt; get NAME
+Documents
+&gt; l
+./:
+&gt; ad $NAME
+&gt; l
+./:
+Documents/
+&gt;
+</pre>
+<p>
+Powłoka Rush zgłosi błąd, jeśli zmienna do której odwołuje się użytkownik nie została wcześniej ustawiona.
+</p>
+
+<h3>Dziedziczenie i samodzielność zmiennych</h3>
+<p>
+W większości UNIXowych systemów operacyjnych, zmienne środowiskowe działają na zasadzie samodzielności i dziedziczenia.<br><br>
+Dziedziczenie polega na tym, że jeśli jakiś program uruchomi jeszcze inny program (inaczej mówiąc, podprogram), to wszystkie zmienne środowiskowe zostaną do niego skopiowane (bardzo ważne słówko, zapamiętaj je).
+Następnie, pojawia się kolejna cecha, czyli w. w. samodzielność. Podprogram może odczytać, zmienić a nawet usunąć przekazane mu zmienne środowiskowe.
+Te, zostaną skopiowane do jeszcze innych podprogramów, jeśli zostaną uruchomione.
+<br><br>
+Zmienne środowiskowe, które zostały zmodyfikowana w podprogramie nie wpływają na działanie nadprogramu.<br><br>
+Przykładowo: Jeśli użytkownik skonfiguruje w swojej sesji zmienną „name” i nada jej wartość „John”, a następnie uruchomi przykładowy program „welcome”, to wtedy zmienna „name” zostanie do niego skopiowana.
+<br>
+Na tym etapie program „welcome” może odczytać zmienną „name”, wyświetlić ją, zmienić jej zawartość na np. „Alice” a później uruchomić następną instancję programu „welcome”. Wtedy, następna instancja znowu uzyska dostęp do zmiennej „name”, a potem wyświetli ją i zmieni. Tak w kółko.
+<br><br>
+Warto jednak zaznaczyć, że gdy użytkownik zamknie wszystkie instancje zmyślonego programu „welcome” i spróbuje sprawdzić zawartość zmiennej „name”, to zobaczy on wartość „John”. To dlatego, że zmienne środowiskowe są KOPIOWANE do podprogramów, a nie PRZEKAZYWANE.
+</p>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Dokumentacja niezależna. Poradnik.<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.8 i nowszej programu Rush<br>
+    <b>Ostatnia data modyfikacji:</b> 7 grudnia 2024<br>
+    <b>Należy do grupy projektów:</b> rush<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "rush" - programy</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>Uruchamianie i znajdowanie programów</h1>
+
+<h3>Ręczne znajdowanie programów</h3>
+<p>
+Programy możesz aktywować wpisując ich pełną ścieżkę w konsoli. Przykładowo, jeśli posiadasz program „hello”, zainstalowany w folderze „/bin” - możesz go uruchomić wpisując w konsoli polecenie „/bin/hello”.<br>
+Jeśli program, który chcesz uruchomić znajduje się w aktualnym katalogu roboczym, możesz po prostu użyć popularnego skrótu „.”, zamiast pełnej ścieżki folderu.
+Komenda będzie wyglądała więc tak: „./hello”
+</p>
+
+<h3>Automatyczne znajdowanie programów</h3>
+<p>
+Alternatywnie, Rush obsługuje zmienną środowiskową „PATH”, która służy w systemie jako lista folderów, w których zazwyczaj instalowane są programy.
+Dzięki temu, niepotrzebne jest uzupełnianie poleceń o nazwy folderów z tej właśnie listy.
+Jeśli folder „/bin” znajdzie się w zmiennej „PATH”, można uruchomić polecenie „hello” bez jakichkolwiek przedrostków.
+<br> <br>
+Kolejność folderów w zmiennej środowiskowej „PATH” ma znaczenie.<br>
+Jeśli przykładowy program „hello” znajdzie się w więcej niż jednym katalogu ze zmiennej „PATH”, to Rush uruchomi instancję programu „hello” z folderu, który został wpisany w tą zmienną na wcześniejszej pozycji.
+<br><br>
+Więcej na temat zmiennych środowiskowych znajdziesz w przeznaczonym do tego artykule pomocy o Rushu.
+</p>
+<h3>Wywoływanie skryptów</h3>
+<p>
+Jeszcze nie zaimplementowano.
+Pomóż mi w rozwijaniu tego programu!
+</p>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.8 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 7 grudnia 2024<br>
+    <b>Należy do grupy projektów:</b> rush<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

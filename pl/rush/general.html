@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "rush" - składnia</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>Ogólne</h1>
+
+<h3>Po uruchomieniu</h3>
+<p>
+Po uruchomieniu, program Rush aktywuje interaktywny tryb tekstowy.
+W owym trybie, użytkownik może wpisywać dowolne polecenie i zatwerdzić je naciskając klawisz ENTER na klawiaturze.
+Każde polecenie wpisane w konsoli składa się ze słów, gdzie każde słowo oczywiście oddziela się spacją.
+O tym co te słowa dokładnie oznaczają napiszę trochę później.
+</p>
+<h3>Argumenty</h3>
+<p>
+Z zatwierdzonych słów w poleceniu, to które zostanie wpisane jako pierwsze jest rozumiane jako nazwa programu, który ma zostać aktywowany.<br>
+Reszta słów w poleceniu, to argumenty, które zostaną przekazane wykonywanemu programowi
+Dzięki temu, można dokładniej określić co chce się zrobić z danym programem.
+Np. warto powiedzieć programowi do kopiowania plików, co w ogóle chcemy skopiować.<br>
+Oprócz tego, Rush rozumie także takie coś jak przełączniki.
+Przełącznik, to specjalny typ argumentów, określającym, nie co, a jak lub w jakim trybie ma coś wykonać dany program.
+Np. kiedy usuwasz pliki: Wrzucić je do kosza, czy usunąć je permanentnie?<br>
+Argumenty a przełączniki odróżniamy tym, że przełączniki zaczynamy zapisywać od znaku myślnika, oraz możemy do nich dopisywać dodatkowe wartości po znaku równania.
+<br><br>
+Nie możesz też nigdy zapomnieć o tym, że dla programu Rush, argumenty nie mają tak naprawdę żadnego znaczenia.
+Służą one tylko do tego, aby przekazać je wywołanej aplikacji opisanej w pierwszym argumencie.<br>
+Oznacza to więc, że interpretacja argumentów zależy od programu.
+Istnieją programy, które przyjmują nieskończenie dużą ilość argumentów, opcji i wartości do opcji.
+Istnieją też programy, które nie zezwalają na nie w ogóle.
+Istnieją programy, dla których kolejność opcji i argumentów nie ma znaczenia. Z drugiej strony - możesz też natrafić na oprogramowanie, dla którego kolejność wpisanych opcji będzie krytycznie ważna.
+<br><br>
+Co jeszcze ciekawsze, wiele programów zupełnie inaczej rozumie swoje argumenty i opcje.
+Dla jednego programu, opcja „-u” może oznaczać coś w stylu „uppercase”. Dlatego jeśli dopiszesz po nim pewne argumenty, to program wyświetli je konwertując wszystko na wielkie literki.
+W innym przypadku, może okazać się, że opcja „-u” może oznaczać „upgrade” i wolę zaktualizowania jakichś systemowych bibliotek, albo jeszcze czegoś innego. Na szczęście, większość programów posiada swoją własną dokumentację i spis dostępnych opcji oraz przyjmowanych argumentów.
+</p>
+<pre>
+  --- Name of a program to launch.
+  |     --- Argument.
+  |     |
+  |     |    --- That's an argument too.
+  |     |    |               --- Option without a value.
+  |     |    |               |     --- Option with a value.
+  |     |    |               |     --- Beware! Rush is case sensitive!
+  |     |    |               |     --- Options "d" and "D" are two, independent things!
+  |     |    |               |     --- By the shell, they mean something different.
+  |     |    |               |     |
+names alice john paul susan -d -D=upper
+</pre>
+
+<h3>Znaki białe</h3>
+<p>
+Rush oddziela każdy argument używając znaku spacji. Jeżeli zależy ci na wpisaniu polecenia z argumentem zawierającym ten znak, zamknij go w cudzysłowach. Nie ważne, czy użyjesz cudzysłowów podwójnych czy pojedynczych. ("" albo '').
+Liczy się tylko utrzymanie spójności. Cudzysłów rozpoczęty znakiem jednego typu, zawsze zakończ tym samym.<br>
+</p>
+
+<h3>Znaki białe</h3>
+<p>
+Ważne jest także zwrócenie uwagi na wielkość liter. Dla interpretera poleceń Rush, słowa „kotek”, „Kotek” lub „KOTEK”, to trzy, kompletnie różne wyrażenia.
+</p>
+<h3>Skróty klawiszowe</h3>
+<p>
+Rush pozwala na zarządzanie tekstem podczas wpisywania poleceń na konsoli w sposób podobny, do działania wielu popularnych edytorów tekstowych.
+Dlatego oprócz samego pisania, możesz sobie pozwolić na modyfikowanie wpisanych już wyrazów.
+</p>
+<pre>
+ARROW_RIGHT:
+Przejdź do litery po prawej.
+
+ARROW_LEFT:
+Przejdź do litery po lewej.
+
+ARROW_UP:
+Unimplemented. Will cause a crash.
+
+ARROW_DOWN:
+Unimplemented. Will cause a crash.
+
+CTRL + ARROW_RIGHT:
+Przeskocz do słowa po prawej.
+
+CTRL + ARROW_LEFT:
+Przeskocz do słowa po lewej.
+
+BACKSPACE:
+Usuń literę.
+
+CTRL + BASKSPACE:
+Usuń całe słowo.
+
+HOME:
+Przeskocz do początku linii.
+
+END:
+Przeskocz do końca linii.
+
+CTRL + Z:
+Zamknij konsolę.
+</pre>
+
+<h3>Inne informacje:</h3>
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Program<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.8 i nowszej<br>
+    <b>Ostatnia data modyfikacji:</b> 7 grudnia 2024<br>
+    <b>Należy do grupy projektów:</b> rush<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>

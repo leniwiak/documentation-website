@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Dokumentacja "rush" - katalogi</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>Katalogi</h1>
+<p>
+Katalogiem (lub inaczej, folderem) określa się logiczną strukturę danych, która może zawierać wiele plików lub innych katalogów.
+</p>
+
+<h3>Sprawdzanie katalogu roboczego </h3>
+<p>
+Gdy użytkownik zechce rozpocząć pracę w pewnym programie wymagającym dostępu do plików (takim programem może być edytore tekstu),
+będzie on musiał wpisać nazwę tego programu, a następnie odwołać się w argumencie do nazwy pewnego pliku. Odwołanie można wykonać na dwa sposoby:<br>
+</p>
+<ul>
+	<li>Może wpisać pełną ścieżkę do pliku, np. „/data/documents/animals/africa/elephants.txt” (tak zwana ścieżka absolutna)</li>
+	<li>Może wpisać tylko nazwę pliku, np. „elephants.txt” (tak zwana ścieżka względna)</li>
+</ul>
+<p>
+W pierwszym przypadku, użytkownik odwołał się do pliku, określając przy tym jego pełną ścieżkę. Jest to rozwiązanie proste ale raczej mało wygodne.<br>
+W drugim przypadku, użytkownik wpisał tylko i wyłącznie nazwę pliku, do którego chce się odwołać. Nie określono przy tym ścieżki pliku.
+W tym przypadku, powłoka nie wie skąd brać ten plik.<br>
+Na szczęście, zamiast panikować, powłoka Rush spróbuje przekazać programowi plik „elephants.txt” wraz ze ścieżką do katalogu roboczego.<br><br>
+Aby sprawdzić jaki jest aktualny katalog roboczy, wywołaj polecenie „cd” (current directory).<br>
+Wbudowane w powłokę polecenie „cd” nie wspiera żadnych opcji ani przełączników.
+</p>
+
+<h3>Zmiana katalogu roboczego</h3>
+<p>
+Aby zmienić aktualnie działący katalog, użyj polecenia „gt” (go to).<br>
+Polecenie „gt” wymaga dokładnie jednego argumentu, który określa nazwę katalogu, który użytkownik chce ustawić jako nowy katalog roboczy.<br>
+Nazwa katalogu może przyjmować formę ścieżki absolutnej lub względnej.
+</p>
+<pre>
+&gt; cd
+/home/user
+&gt; gt Documents
+&gt; cd
+/home/user/Documents
+&gt; gt /bin
+&gt; cd
+/bin
+&gt;
+</pre>
+
+<h3>Skróty podczas odwoływania się do ścieżki</h3>
+<p> Rush wspiera poniższe skróty podczas odwoływania się do ścieżek lub zmiany katalogu roboczego: </p>
+<pre>
+~     Katalog domowy: Domyślny katalog który jest wybierany jako katalog roboczy po zalogowaniu.
+.     Aktualny katalog roboczy.
+..    Katalog nadrzędny: Katalog w drzewie systemu plików znajdujący się przed tym aktualnym.
+</pre>
+
+<p>
+    <b>Autor:</b> Leniwiak<br>
+    <b>Typ objektu:</b> Dokumentacja niezależna. Poradnik.<br>
+    <b>Dokumentacja dostosowana do wersji:</b> 0.3.8 i nowszej programu Rush<br>
+    <b>Ostatnia data modyfikacji:</b> 7 grudnia 2024<br>
+    <b>Należy do grupy projektów:</b> rush<br>
+    <b>Strona internetowa:</b> http://docs.leniwiak.pl/<br>
+    <b>Język programowania:</b> Rust<br>
+</p>
+
+</body>
+</html>
